@@ -1,0 +1,35 @@
+<?php
+
+function commenting_menu() {
+  $items = array();
+
+  $items['comment_submitted'] = array(
+    'title' => 'Comment Submitted',
+    'page callback' => 'say_submitted',
+    'access callback'=> TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['comment_edited'] = array(
+    'title' => 'Comment Edited',
+    'page callback'=> 'say_edited',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function say_submitted() {
+  return '<p>Thank you for your comment!</p>';
+}
+function say_edited() {
+  return '<p>Your comment has been edited</p>';
+}
+
+function commenting_comment_insert() {
+  $_GET['destination'] = 'comment_submitted';
+}
+function commenting_comment_update() {
+  $_GET['destination'] = 'comment_edited';
+}
